@@ -4,7 +4,8 @@
 body {
     margin: 0px auto;
     width: 100%;
-    min-height: 100vh;       /* Footer Seitenende */
+    min-height: 100vh;
+    /* Footer Seitenende */
     display: flex;
     flex-direction: column;
     background: border-box;
@@ -16,14 +17,22 @@ main {
     justify-content: center;
     flex-direction: column;
     flex: 1;
-   
+
     background-color: rgb(17, 49, 87);
 }
 
 
-.card{
-   
+.header-wrapper{
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    background-color: rgba(var(--bs-tertiary-bg-rgb));
+}
 
+
+.card-container:hover{
+    cursor: pointer;
+    background-color:#efefef;
 }
 
 
@@ -34,7 +43,7 @@ main {
 }
 
 
-.card-img-top{
+.card-img-top {
     width: 100%;
     height: 350px;
     object-fit: cover;
@@ -47,11 +56,25 @@ footer {
     background-color: rgb(248, 249, 250);
 }
 
-.mb{
+.mb {
     margin-bottom: 16px;
 }
 
 
-.card-wrapper{
+.card-wrapper {
     width: 35rem;
+}
+
+
+.quiz-card-footer-left {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+
+.quiz-card-footer-right {
+    display: flex;
+    justify-content: space-around;
 }

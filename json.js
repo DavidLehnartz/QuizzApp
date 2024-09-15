@@ -3,71 +3,67 @@
 /* JSON ARRAY*/
 
 
+let currentQuestion = 0;
+
+
 let myQuestions = {
-    "quizTitle": "JavaScript Quiz",
+    "quizTitle": "My JavaScript Quiz",
     "questions": [
         {
-            "question_0": "Which company developed JavaScript?",
-            "answers": [
-                { "answer_1": "Microsoft", "isCorrect": false },
-                { "answer_2": "Netscape", "isCorrect": true },
-                { "answer_3": "Google", "isCorrect": false },
-                { "answer_4": "IBM", "isCorrect": false }
-            ]
+            "question": "Which company developed JavaScript?",
+            "answer_1": "Microsoft",
+            "answer_2": "Netscape",
+            "answer_3": "Google",
+            "answer_4": "IBM",
+            "correct_answer": "answer_2"
         },
         {
-            "question_1": "Which of the following is a primitive data type in JavaScript?",
-            "answers": [
-                { "answer_1": "Array", "isCorrect": false },
-                { "answer_2": "Object", "isCorrect": false },
-                { "answer_3": "String", "isCorrect": true },
-                { "answer_4": "Function", "isCorrect": false }
-            ]
+            "question": "Which of the following is a primitive data type in JavaScript?",
+            "answer_1": "Array",
+            "answer_2": "Object",
+            "answer_3": "String",
+            "answer_4": "Function",
+            "correct_answer": "answer_3"
         },
         {
-            "question_2": "What will the following expression return: `typeof NaN`?",
-            "answers": [
-                { "answer_1": "'number'", "isCorrect": true },
-                { "answer_2": "'NaN'", "isCorrect": false },
-                { "answer_3": "'undefined'", "isCorrect": false },
-                { "answer_4": "'object'", "isCorrect": false }
-            ]
+            "question": "What will the following expression return: `typeof NaN`?",
+            "answer_1": "'number'",
+            "answer_2": "'NaN'",
+            "answer_3": "'undefined'",
+            "answer_4": "'object'",
+            "correct_answer": "answer_1"
         },
         {
-            "question_3": "Which method is used to add an element to the end of an array in JavaScript?",
-            "answers": [
-                { "answer_1": "push()", "isCorrect": true },
-                { "answer_2": "pop()", "isCorrect": false },
-                { "answer_3": "shift()", "isCorrect": false },
-                { "answer_4": "unshift()", "isCorrect": false }
-            ]
+            "question": "Which method is used to add an element to the end of an array in JavaScript?",
+            "answer_1": "push()",
+            "answer_2": "pop()",
+            "answer_3": "shift()",
+            "answer_4": "unshift()",
+            "correct_answer": "answer_1"
         },
         {
-            "question_4": "Which of the following is a valid way to declare a variable in JavaScript?",
-            "answers": [
-                { "answer_1": "var myVar = 5;", "isCorrect": true },
-                { "answer_2": "let myVar = 5;", "isCorrect": true },
-                { "answer_3": "const myVar = 5;", "isCorrect": true },
-                { "answer_4": "All of the above", "isCorrect": true }
-            ]
+            "question": "Which of the following is a valid way to declare a variable in JavaScript?",
+            "answer_1": "var myVar = 5;",
+            "answer_2": "let myVar = 5;",
+            "answer_3": "const myVar = 5;",
+            "answer_4": "All of the above",
+            "correct_answer": "answer_4"
         },
         {
-            "question_5": "What is the result of `2 + '2'` in JavaScript?",
-            "answers": [
-                { "answer_1": "4", "isCorrect": false },
-                { "answer_2": "'22'", "isCorrect": true },
-                { "answer_3": "NaN", "isCorrect": false },
-                { "answer_4": "undefined", "isCorrect": false }
-            ]
+            "question": "What is the result of `2 + '2'` in JavaScript?",
+            "answer_1": "4",
+            "answer_2": "'22'",
+            "answer_3": "NaN",
+            "answer_4": "undefined",
+            "correct_answer": "answer_2"
         },
         {
-            "question_6": "Which of the following is NOT a JavaScript framework or library?",
-            "answers": [
-                { "answer_1": "React", "isCorrect": false },
-                { "answer_2": "Angular", "isCorrect": false },
-                { "answer_3": "Django", "isCorrect": true },
-                { "answer_4": "Vue", "isCorrect": false }
-            ]
+            "question": "Which of the following is NOT a JavaScript framework or library?",
+            "answer_1": "React",
+            "answer_2": "Angular",
+            "answer_3": "Django",
+            "answer_4": "Vue",
+            "correct_answer": "answer_3"
         }
     ]
-}
+};

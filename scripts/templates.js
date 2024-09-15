@@ -1,30 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+'use strict';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuizzApp</title>
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./style.css">
+/* TEMPLATES */
 
-    <script src="./json.js"></script>
-    <script src="./script.js"></script>
-    <script src="./scripts/templates.js"></script>
-</head>
 
-<section class="header-wrapper">
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <span id="quiz_title" class="navbar-brand mb-0 h1"></span>
-        </div>
-    </nav>
-</section>
-
-<body onload="init()">
-    <main>
-        <section id="quiz_content" class="quiz-content">
-            <!-- <div class="card card-wrapper">
+// Quiz Content Template
+ function getQuizContentTemplate() {
+    return `
+            <div class="card card-wrapper">
                 <img src="./assets/img/head.jpeg" class="card-img-top" alt="#">
                 <div class="card-body">
                     <h5 id="question_text" class="card-title mb"></h5>
@@ -49,17 +31,14 @@
                         </div>
                     </div>
                     <span class="quiz-card-footer-left">
-                        <b>1</b>of<b id="question_counter"></b>
+                        <b>1</b>
+                           of
+                        <b id="question_counter"></b>
                     </span>
                     <div class="quiz-card-footer-right">
                         <a href="#" class="btn btn-primary">Next Question</a>
                     </div>
                 </div>
-            </div> -->
-        </section>
-    </main>
-</body>
-
-<footer></footer>
-
-</html>
+            </div>
+    `;
+} 
