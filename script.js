@@ -18,36 +18,47 @@ function init() {
 }
 
 
-// Render Quiz Content
+// Render Quiz Content (INIT)
 function renderQuizContent() {
     let quizContentRef = document.getElementById('quiz_content');
     quizContentRef.innerHTML = getQuizContentTemplate();
 }
 
 
-//Show Quiz Title
+//Show Quiz Title (INIT)
 function showQuizTitle() {
     let quizTitleRef = document.getElementById('quiz_title');
     quizTitleRef.innerHTML = myQuestions.quizTitle;
 }
 
 
-// Show Question Number
+// Show Question Number (INIT)
 function showQuestionCounter() {
     let questionNumber = document.getElementById('question_counter');
     questionNumber.innerHTML = myQuestions.questions.length;
 }
 
 
-// Show Question
+// Render  Endscreen Dialog / Overlay
+function renderEndScreen() {
+
+}
+
+
+// Show Question (INIT)
 function showQuestionAndAnswers() {
     let question = myQuestions.questions[currentQuestion];
 
-    document.getElementById('question_text').innerHTML = question['question'];
-    document.getElementById('answer_1').innerHTML = question['answer_1'];
-    document.getElementById('answer_2').innerHTML = question['answer_2'];
-    document.getElementById('answer_3').innerHTML = question['answer_3'];
-    document.getElementById('answer_4').innerHTML = question['answer_4'];
+    if (currentQuestion >= myQuestions.length) {
+        // TODO Oerlay Dialog ? 
+    } else {
+        document.getElementById('current_question_count').innerHTML = currentQuestion + 1;
+        document.getElementById('question_text').innerHTML = question['question'];
+        document.getElementById('answer_1').innerHTML = question['answer_1'];
+        document.getElementById('answer_2').innerHTML = question['answer_2'];
+        document.getElementById('answer_3').innerHTML = question['answer_3'];
+        document.getElementById('answer_4').innerHTML = question['answer_4'];
+    }
 }
 
 
@@ -71,8 +82,26 @@ function answer(selection) {
 // Next Question (ONCLICK)
 function nextQuestion() {
     currentQuestion++;
+    clearForNextQuestion();
     showQuestionAndAnswers();
 }
+
+
+// Clear Run -> nextQuestion Func.
+function clearForNextQuestion() {
+    document.getElementById('next_btn').disabled = true;
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+}
+
+
+
 
 
 // Answer (ONCLICK)

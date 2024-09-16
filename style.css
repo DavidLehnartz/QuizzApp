@@ -22,7 +22,18 @@ main {
 }
 
 
-.header-wrapper{
+h1 {
+    color: #efefef;
+    color: #ffc107;
+    margin-bottom: 16px;
+}
+
+
+p{
+    color: #efefef;
+}
+
+.header-wrapper {
     display: flex;
     justify-content: center;
     height: 100px;
@@ -30,9 +41,9 @@ main {
 }
 
 
-.card-container:hover{
+.card-container:hover {
     cursor: pointer;
-    background-color:#efefef;
+    background-color: #efefef;
 }
 
 
@@ -61,6 +72,11 @@ footer {
 }
 
 
+.pd{
+    padding: 8px 64px;
+}
+
+
 .card-wrapper {
     width: 35rem;
 }
@@ -77,4 +93,60 @@ footer {
 .quiz-card-footer-right {
     display: flex;
     justify-content: space-around;
+}
+
+
+.overlay-quiz {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 100vh;
+    width: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.583);
+    backdrop-filter: blur(5px);
+}
+
+
+.dialog-quiz {
+    width: 650px;
+    height: 550px;
+    background-color: rgb(17, 49, 87);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #efefef;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+
+.dialog-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.dialog-content {
+    
+}
+
+
+.dialog-footer {
+    display: flex;
+    justify-content: center;
+}
+
+
+.dialog-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
 }

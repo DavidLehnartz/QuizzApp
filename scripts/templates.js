@@ -31,7 +31,7 @@ function getQuizContentTemplate() {
                         </div>
                     </div>
                     <span class="quiz-card-footer-left">
-                        <b>1</b>
+                        <b id="current_question_count">1</b>
                            of
                         <b id="question_counter"></b>
                     </span>
