@@ -14,7 +14,7 @@ function init() {
     showQuizTitle();
     renderQuizContent();
     showQuestionCounter();
-    showQuestion();
+    showQuestionAndAnswers();
 }
 
 
@@ -40,7 +40,7 @@ function showQuestionCounter() {
 
 
 // Show Question
-function showQuestion() {
+function showQuestionAndAnswers() {
     let question = myQuestions.questions[currentQuestion];
 
     document.getElementById('question_text').innerHTML = question['question'];
@@ -54,14 +54,38 @@ function showQuestion() {
 // Answer (ONCLICK)
 function answer(selection) {
     let question = myQuestions.questions[currentQuestion];
-    console.log('selected answer is', question['correct_answer']);
+    let selectedAnswer = selection;
+    let correctAnswer = question['correct_answer'];
+    let idOfRightAnswer = correctAnswer;
+
+    if (selectedAnswer === correctAnswer) {
+        document.getElementById(selection).parentNode.classList.add('bg-success');
+    } else {
+        document.getElementById(selection).parentNode.classList.add('bg-danger');
+        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+    }
+    document.getElementById('next_btn').disabled = false;
+}
+
+
+// Next Question (ONCLICK)
+function nextQuestion() {
+    currentQuestion++;
+    showQuestionAndAnswers();
+}
+
+
+// Answer (ONCLICK)
+/* function answer(selection) {
+    let question = myQuestions.questions[currentQuestion];
+    console.log('selected answer is', selection);
     let selectedQuestionNumber = selection.slice(-1);
     console.log('selectedQuestionNumber is', selectedQuestionNumber);
     console.log('current question is', question['correct_answer']);
 
-    if (selectedQuestionNumber === question['correct_answer']) {
+    if (selectedQuestionNumber == question['correct_answer']) {
         document.getElementById(selection).parentNode.classList.add('bg-success');
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
     }
-}
+} */
