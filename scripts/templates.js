@@ -9,7 +9,7 @@ function getQuizContentTemplate() {
             <div class="card card-wrapper">
                 <img src="./assets/img/head.jpeg" class="card-img-top" alt="#">
                 <div class="card-body">
-                    <h5 id="question_text" class="card-title mb"></h5>
+                    <h5 id="question_text" class="card-title text-position mb"></h5>
                     <div class="card card-container mb">
                         <div onclick="answer('answer_1')" id="answer_1" class="card-body">
                             Answer 1
@@ -37,6 +37,7 @@ function getQuizContentTemplate() {
                     </span>
                     <div class="quiz-card-footer-right">
                         <button onclick="nextQuestion()" id="next_btn" disabled class="btn btn-primary">Next Question</button>
+                        <button onclick="openEndScreen()" id="finish_btn" disabled class="btn btn-primary">Finish Quiz</button>
                     </div>
                 </div>
             </div>

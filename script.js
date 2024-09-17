@@ -3,10 +3,11 @@
 /* MAIN SCRIPT */
 
 /* TASKS */
-// Render Quiz content und template
-// fragen anzeigen lassen
-//antworten anzeigen lassen
-// richtige und falsche antworten anzeigen lassen
+// endscreen anzeigen lassen
+//quiz zurücksetzen
+
+
+
 
 
 // Initialize
@@ -15,6 +16,25 @@ function init() {
     renderQuizContent();
     showQuestionCounter();
     showQuestionAndAnswers();
+
+}
+
+
+// Render  Endscreen Dialog / Overlay
+function renderEndScreen() {
+
+}
+
+
+// Close Dialog And Reset Quiz (ONCLICK)
+function resetQuiz() {
+    document.getElementById('end_screen').classList.add('d_none');
+}
+
+
+// Open End Screen (ONCLICK)
+function openEndScreen() {
+    document.getElementById('end_screen').classList.remove('d_none');
 }
 
 
@@ -39,18 +59,13 @@ function showQuestionCounter() {
 }
 
 
-// Render  Endscreen Dialog / Overlay
-function renderEndScreen() {
-
-}
-
-
 // Show Question (INIT)
 function showQuestionAndAnswers() {
     let question = myQuestions.questions[currentQuestion];
 
     if (currentQuestion >= myQuestions.length) {
-        // TODO Oerlay Dialog ? 
+        document.getElementById('finish_btn').style = '';
+        document.getElementById('next_btn').style = 'display:none';
     } else {
         document.getElementById('current_question_count').innerHTML = currentQuestion + 1;
         document.getElementById('question_text').innerHTML = question['question'];
@@ -59,6 +74,7 @@ function showQuestionAndAnswers() {
         document.getElementById('answer_3').innerHTML = question['answer_3'];
         document.getElementById('answer_4').innerHTML = question['answer_4'];
     }
+    changeButton();
 }
 
 
@@ -76,6 +92,7 @@ function answer(selection) {
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
     document.getElementById('next_btn').disabled = false;
+    document.getElementById('finish_btn').disabled = false;
 }
 
 
@@ -101,6 +118,19 @@ function clearForNextQuestion() {
 }
 
 
+// Change Button At Last Question Run -> showQuestionAndAnswers Func.
+function changeButton() {
+    // Wenn es die letzte Frage ist, zeige den Finish-Button und verstecke den Next-Button
+    if (currentQuestion === myQuestions.questions.length - 1) {
+        document.getElementById('finish_btn').style.display = '';
+        document.getElementById('next_btn').style.display = 'none';
+        document.getElementById('finish_btn').disabled = true;
+    } else {
+        document.getElementById('finish_btn').style.display = 'none';
+        document.getElementById('next_btn').style.display = '';
+    }
+
+}
 
 
 
