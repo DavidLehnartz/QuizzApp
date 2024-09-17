@@ -3,10 +3,6 @@
 /* MAIN SCRIPT */
 
 /* TASKS */
-// endscreen anzeigen lassen
-//quiz zurücksetzen
-
-
 
 
 
@@ -16,7 +12,6 @@ function init() {
     renderQuizContent();
     showQuestionCounter();
     showQuestionAndAnswers();
-
 }
 
 
@@ -26,9 +21,16 @@ function renderEndScreen() {
 }
 
 
-// Close Dialog And Reset Quiz (ONCLICK)
 function resetQuiz() {
-    document.getElementById('end_screen').classList.add('d_none');
+    currentQuestion = 0;  // Setze den aktuellen Frage-Index zurück auf 0
+
+    document.getElementById('end_screen').classList.add('d_none');   // Blende den Endscreen aus, falls er angezeigt wird
+    document.getElementById('finish_btn').style.display = 'none';   // Setze den Finish-Button und Next-Button auf die Standardwerte
+    document.getElementById('next_btn').style.display = '';
+
+    clearForNextQuestion();   // Setze alle Antwortfelder zurück, falls sie rot oder grün markiert sind
+
+    showQuestionAndAnswers();  // Starte das Quiz von vorne, indem du die erste Frage zeigst
 }
 
 
@@ -55,7 +57,9 @@ function showQuizTitle() {
 // Show Question Number (INIT)
 function showQuestionCounter() {
     let questionNumber = document.getElementById('question_counter');
+    let questionNumberDialog = document.getElementById('amount_of_questions');
     questionNumber.innerHTML = myQuestions.questions.length;
+    questionNumberDialog.innerHTML = myQuestions.questions.length;
 }
 
 
@@ -87,6 +91,7 @@ function answer(selection) {
 
     if (selectedAnswer === correctAnswer) {
         document.getElementById(selection).parentNode.classList.add('bg-success');
+        
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
