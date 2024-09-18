@@ -4,7 +4,9 @@
 
 /* TASKS */
 
-
+// AUDIO HINZUFÜGEN
+// RESPONSIVE
+// LOCAL STORAGE
 
 // Initialize
 function init() {
@@ -14,9 +16,6 @@ function init() {
     showQuestionAndAnswers();
     renderEndScreen();
 }
-
-
-
 
 
 function resetQuiz() {
@@ -83,6 +82,8 @@ function showQuestionAndAnswers() {
         document.getElementById('answer_2').innerHTML = question['answer_2'];
         document.getElementById('answer_3').innerHTML = question['answer_3'];
         document.getElementById('answer_4').innerHTML = question['answer_4'];
+
+        progressBar();
     }
     changeButton();
 }
@@ -140,22 +141,18 @@ function changeButton() {
         document.getElementById('finish_btn').style.display = 'none';
         document.getElementById('next_btn').style.display = '';
     }
-
 }
 
 
+function progressBar() {
+    let totalQuestions = myQuestions.questions.length;   // Gesamtanzahl der Fragen
+    let percent = (currentQuestion + 1) / totalQuestions * 100;  // Berechne Prozentsatz basierend auf currentQuestion
 
-// Answer (ONCLICK)
-/* function answer(selection) {
-    let question = myQuestions.questions[currentQuestion];
-    console.log('selected answer is', selection);
-    let selectedQuestionNumber = selection.slice(-1);
-    console.log('selectedQuestionNumber is', selectedQuestionNumber);
-    console.log('current question is', question['correct_answer']);
+    percent = Math.round(percent);  // Runden des Prozentsatzes
 
-    if (selectedQuestionNumber == question['correct_answer']) {
-        document.getElementById(selection).parentNode.classList.add('bg-success');
-    } else {
-        document.getElementById(selection).parentNode.classList.add('bg-danger');
-    }
-} */
+    // Setze die Breite der Progressbar entsprechend dem Fortschritt
+    document.getElementById('progress_bar').style.width = `${percent}%`;
+
+    // Optional: Zeige den Prozentwert auch in der Progressbar
+    document.getElementById('progress_bar').innerHTML = `${percent}%`;
+}

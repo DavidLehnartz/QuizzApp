@@ -8,6 +8,11 @@ function getQuizContentTemplate() {
     return `
             <div class="card card-wrapper">
                 <img src="./assets/img/head.jpeg" class="card-img-top" alt="#">
+
+<div class="progress">
+  <div id="progress_bar" class="progress-bar bg "role="progressbar" style="width:0%;">0%</div>
+</div>
+
                 <div class="card-body">
                     <h5 id="question_text" class="card-title text-position mb"></h5>
                     <div class="card card-container mb">

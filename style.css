@@ -90,6 +90,11 @@ footer {
 }
 
 
+.bg{
+    background-color: rgb(17, 49, 87);
+}
+
+
 .card-wrapper {
     width: 35rem;
 }
