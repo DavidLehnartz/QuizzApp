@@ -12,17 +12,16 @@ function init() {
     renderQuizContent();
     showQuestionCounter();
     showQuestionAndAnswers();
+    renderEndScreen();
 }
 
 
-// Render  Endscreen Dialog / Overlay
-function renderEndScreen() {
 
-}
 
 
 function resetQuiz() {
     currentQuestion = 0;  // Setze den aktuellen Frage-Index zurück auf 0
+    rightAnswers = 0;
 
     document.getElementById('end_screen').classList.add('d_none');   // Blende den Endscreen aus, falls er angezeigt wird
     document.getElementById('finish_btn').style.display = 'none';   // Setze den Finish-Button und Next-Button auf die Standardwerte
@@ -34,8 +33,17 @@ function resetQuiz() {
 }
 
 
+// Render  Endscreen Dialog / Overlay
+function renderEndScreen() {
+    let endScreenContentRef = document.getElementById('end_screen_dialog');
+    endScreenContentRef.innerHTML = getEndScreenTemplate();
+}
+
+
 // Open End Screen (ONCLICK)
 function openEndScreen() {
+    document.getElementById('amount_of_right_answers').innerHTML = rightAnswers;
+    document.getElementById('amount_of_questions').innerHTML = myQuestions.questions.length;
     document.getElementById('end_screen').classList.remove('d_none');
 }
 
@@ -57,9 +65,7 @@ function showQuizTitle() {
 // Show Question Number (INIT)
 function showQuestionCounter() {
     let questionNumber = document.getElementById('question_counter');
-    let questionNumberDialog = document.getElementById('amount_of_questions');
     questionNumber.innerHTML = myQuestions.questions.length;
-    questionNumberDialog.innerHTML = myQuestions.questions.length;
 }
 
 
@@ -91,7 +97,7 @@ function answer(selection) {
 
     if (selectedAnswer === correctAnswer) {
         document.getElementById(selection).parentNode.classList.add('bg-success');
-        
+        rightAnswers++;
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');

@@ -42,4 +42,23 @@ function getQuizContentTemplate() {
                 </div>
             </div>
     `;
-} 
+}
+
+
+// Render Endscreen Dialog / Overlay
+function getEndScreenTemplate() {
+    return `
+            <div class="dialog-header">
+                <h1>Congratulations</h1>
+                <img class="dialog-img" src="./assets/img/endscreen.png" alt="#">
+            </div>
+            <div class="dialog-content ">
+                <p>
+                    You Answered <b id="amount_of_right_answers">0</b> of <b id="amount_of_questions">0</b> Questions Right
+                </p>
+            </div>
+            <div class="dialog-footer">
+                <button onclick="resetQuiz()" type="button" class="btn btn-outline-warning pd">Reset Quiz</button>
+            </div>
+    `;
+}

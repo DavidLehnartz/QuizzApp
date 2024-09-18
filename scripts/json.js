@@ -3,6 +3,9 @@
 /* JSON ARRAY*/
 
 
+let rightAnswers = 0;
+
+
 let currentQuestion = 0;
 
 
@@ -13,7 +16,7 @@ let myQuestions = {
             "question": "Which company developed JavaScript?",
             "answer_1": "Microsoft",
             "answer_2": "Netscape",
-            "answer_3": "Google", 
+            "answer_3": "Google",
             "answer_4": "IBM",
             "correct_answer": "answer_2"
         },
