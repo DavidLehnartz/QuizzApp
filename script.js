@@ -4,13 +4,13 @@
 
 /* TASKS */
 
-// AUDIO HINZUFÜGEN
 // RESPONSIVE
 // LOCAL STORAGE
 
 // Initialize
 function init() {
-    showQuizTitle();
+    getFromLocalStorage();
+    renderQuizTitle();
     renderQuizContent();
     showQuestionCounter();
     showQuestionAndAnswers();
@@ -18,32 +18,10 @@ function init() {
 }
 
 
-function resetQuiz() {
-    currentQuestion = 0;  // Setze den aktuellen Frage-Index zurück auf 0
-    rightAnswers = 0;
-
-    document.getElementById('end_screen').classList.add('d_none');   // Blende den Endscreen aus, falls er angezeigt wird
-    document.getElementById('finish_btn').style.display = 'none';   // Setze den Finish-Button und Next-Button auf die Standardwerte
-    document.getElementById('next_btn').style.display = '';
-
-    clearForNextQuestion();   // Setze alle Antwortfelder zurück, falls sie rot oder grün markiert sind
-
-    showQuestionAndAnswers();  // Starte das Quiz von vorne, indem du die erste Frage zeigst
-}
-
-
-// Render  Endscreen Dialog / Overlay
-function renderEndScreen() {
-    let endScreenContentRef = document.getElementById('end_screen_dialog');
-    endScreenContentRef.innerHTML = getEndScreenTemplate();
-}
-
-
-// Open End Screen (ONCLICK)
-function openEndScreen() {
-    document.getElementById('amount_of_right_answers').innerHTML = rightAnswers;
-    document.getElementById('amount_of_questions').innerHTML = myQuestions.questions.length;
-    document.getElementById('end_screen').classList.remove('d_none');
+//Show Quiz Title (INIT)
+function renderQuizTitle() {
+    let quizTitleRef = document.getElementById('quiz_title');
+    quizTitleRef.innerHTML = myQuestions.quizTitle;
 }
 
 
@@ -54,10 +32,10 @@ function renderQuizContent() {
 }
 
 
-//Show Quiz Title (INIT)
-function showQuizTitle() {
-    let quizTitleRef = document.getElementById('quiz_title');
-    quizTitleRef.innerHTML = myQuestions.quizTitle;
+// Render  Endscreen Dialog / Overlay (INIT)
+function renderEndScreen() {
+    let endScreenContentRef = document.getElementById('end_screen_dialog');
+    endScreenContentRef.innerHTML = getEndScreenTemplate();
 }
 
 
@@ -83,9 +61,10 @@ function showQuestionAndAnswers() {
         document.getElementById('answer_3').innerHTML = question['answer_3'];
         document.getElementById('answer_4').innerHTML = question['answer_4'];
 
-        progressBar();
+        updateProgressBar();
     }
     changeButton();
+    saveToLocalStorage();
 }
 
 
@@ -98,13 +77,15 @@ function answer(selection) {
 
     if (selectedAnswer === correctAnswer) {
         document.getElementById(selection).parentNode.classList.add('bg-success');
+        audio_right.play();
         rightAnswers++;
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+        audio_wrong.play();
     }
-    document.getElementById('next_btn').disabled = false;
-    document.getElementById('finish_btn').disabled = false;
+    ButtonsIsDisabled();
+    saveToLocalStorage();
 }
 
 
@@ -113,6 +94,7 @@ function nextQuestion() {
     currentQuestion++;
     clearForNextQuestion();
     showQuestionAndAnswers();
+    saveToLocalStorage();
 }
 
 
@@ -144,7 +126,36 @@ function changeButton() {
 }
 
 
-function progressBar() {
+// Buttons Disabled False
+function ButtonsIsDisabled() {
+    document.getElementById('next_btn').disabled = false;
+    document.getElementById('finish_btn').disabled = false;
+}
+
+
+// Open End Screen (ONCLICK)
+function openEndScreen() {
+    document.getElementById('amount_of_right_answers').innerHTML = rightAnswers;
+    document.getElementById('amount_of_questions').innerHTML = myQuestions.questions.length;
+    document.getElementById('end_screen').classList.remove('d_none');
+}
+
+
+function resetQuiz() {
+    currentQuestion = 0;  // Setze den aktuellen Frage-Index zurück auf 0
+    rightAnswers = 0;
+
+    document.getElementById('end_screen').classList.add('d_none');   // Blende den Endscreen aus, falls er angezeigt wird
+    document.getElementById('finish_btn').style.display = 'none';   // Setze den Finish-Button und Next-Button auf die Standardwerte
+    document.getElementById('next_btn').style.display = '';
+
+    clearForNextQuestion();   // Setze alle Antwortfelder zurück, falls sie rot oder grün markiert sind
+
+    showQuestionAndAnswers();  // Starte das Quiz von vorne, indem du die erste Frage zeigst
+}
+
+
+function updateProgressBar() {
     let totalQuestions = myQuestions.questions.length;   // Gesamtanzahl der Fragen
     let percent = (currentQuestion + 1) / totalQuestions * 100;  // Berechne Prozentsatz basierend auf currentQuestion
 
@@ -155,4 +166,6 @@ function progressBar() {
 
     // Optional: Zeige den Prozentwert auch in der Progressbar
     document.getElementById('progress_bar').innerHTML = `${percent}%`;
+
+    saveToLocalStorage();
 }

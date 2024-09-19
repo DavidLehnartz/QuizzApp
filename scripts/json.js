@@ -4,9 +4,9 @@
 
 
 let rightAnswers = 0;
-
-
 let currentQuestion = 0;
+let audio_wrong = new Audio('./audio/wrong.mp3');
+let audio_right = new Audio('./audio/right.mp3');
 
 
 let myQuestions = {
